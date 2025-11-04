@@ -15,3 +15,16 @@ yaprak[dst > 0.01 * dst.max()] = [0, 0, 255]
 cv2.imshow("Corners", yaprak)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+
+yaprak = cv2.imread("yaprak.jpg")
+gray = cv2.cvtColor(yaprak, cv2.COLOR_BGR2GRAY)
+
+blur = cv2.GaussianBlur(gray, (5, 5), 0)
+kenar = cv2.Canny(blur, 100, 200)
+
+yaprak[kenar != 0] = [0, 0, 255]
+
+cv2.imshow("Edges", yaprak)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
